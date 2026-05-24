@@ -318,6 +318,7 @@ C:\Qt\6.10.2\msvc2022_64\bin\windeployqt.exe debug\TSP_BranchAndBound.exe
    - Doxygen-совместимые комментарии
    - UML-диаграмма архитектуры
 
+### Программа
 ![Программа](2026-05-24_17-00-34.png)
 
 ---
