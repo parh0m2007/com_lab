@@ -268,12 +268,13 @@ sudo apt-get install build-essential cmake qtbase5-dev
 3. Установите CMake и MinGW
 
 ### Шаг 2: Сборка
-
 ```bash
 cd /workspace
 mkdir build && cd build
-cmake ..
+cmake -DCMAKE_PREFIX_PATH="C:\Qt\6.10.2\msvc2022_64" .. 
 cmake --build .
+C:\Qt\6.10.2\msvc2022_64\bin\windeployqt.exe debug\TSP_BranchAndBound.exe
+.\debug\TSP_BranchAndBound.exe
 ```
 
 ### Шаг 3: Запуск
