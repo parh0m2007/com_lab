@@ -1,50 +1,178 @@
-```
-# Build artifacts
+```cpp
+# Created by https://www.toptal.com/developers/gitignore/api/qt
+# Edit at https://www.toptal.com/developers/gitignore?templates=qt
+
+# Qt-specific ignore patterns
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+*.moc.cpp
+*.qm
+*.prl
+*.pri
+*.metatypes
+Makefile*
+obj/
+moc_*
+.qmake.cache
+.qmake.stash
+*.pro~
+*.pri~
+
+# Build directories
+build/
+debug/
+release/
+*_build/
+*_debug/
+*_release/
+
+# IDE specific
+*.user
+*.sln
+*.vcxproj*
+*.vcproj*
+*.cbp
+*.layout
+*.depend
+
+# C++ common
 *.o
 *.obj
-*.a
 *.so
+*.dylib
 *.dll
 *.exe
+*.a
+*.lib
 *.out
-build/
-dist/
 
-# Dependencies
-venv/
-.venv/
-__pycache__/
-*.egg-info/
-node_modules/
+# Generated files
+*.moc.cpp
+*.moc
+*.ui.h
+*.ts
+*.qm
 
-# CMake
-CMakeFiles/
-cmake-build-*/
-Makefile
-*.cmake
-
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs and temp files
-*.log
+# Temporary files
+*~
+.#*
+*.bak
 *.tmp
-*.temp
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
 
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
+
+# Logs
+*.log
+
+# Coverage reports
+coverage/
+*.gcda
+*.gcno
+
+# Distribution artifacts
+dist/
+*.tar.gz
+*.zip
+
+# Editor backups
+*.swp
+*.swo
+*~
+
+# Python (if mixed project)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+*.so
+
+# Node.js (if mixed project)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/node_modules/
+/.pnp
+.pnp.js
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.FBCIndex
+.sleepimage
+.svn
+ CVS
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Android
+*.apk
+*.ap_
+build/
+gen/
+bin/
+res/
+assets/
+proguard/
+
+# iOS
+*.ipa
+*.app
+*.app.dSYM/
+
+# Additional Qt Creator
+*.creator
+*.creator.user
+*.files
+*.config
+
+# Qt WebEngine
+QtWebEngineProcess.app/
+QtWebEngineProcess.exe
+
+# Qt Linguist
+*.qm
+*.ts
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# QML
+*.qmlc
+
+# End of https://www.toptal.com/developers/gitignore/api/qt
 ```
