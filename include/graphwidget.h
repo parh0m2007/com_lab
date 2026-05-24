@@ -110,27 +110,27 @@ private:
     /**
      * @brief Draw the grid background
      */
-    void drawGrid();
+    void drawGrid(QPainter& painter);
     
     /**
      * @brief Draw all nodes
      */
-    void drawNodes();
+    void drawNodes(QPainter& painter);
     
     /**
      * @brief Draw all edges
      */
-    void drawEdges();
+    void drawEdges(QPainter& painter);
     
     /**
      * @brief Draw the solution path
      */
-    void drawSolutionPath();
+    void drawSolutionPath(QPainter& painter);
     
     /**
      * @brief Draw weight labels on edges
      */
-    void drawEdgeWeights();
+    void drawEdgeWeights(QPainter& painter);
     
     /**
      * @brief Find node at screen position

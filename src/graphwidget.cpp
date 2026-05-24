@@ -118,21 +118,21 @@ void GraphWidget::paintEvent(QPaintEvent* event)
     painter.fillRect(rect(), Qt::white);
     
     // Draw grid
-    drawGrid();
+    drawGrid(painter);
     
     // Draw edges first (so they appear behind nodes)
-    drawEdges();
+    drawEdges(painter);
     
     // Draw solution path on top of regular edges
     if (m_hasSolution) {
-        drawSolutionPath();
+        drawSolutionPath(painter);
     }
     
     // Draw nodes
-    drawNodes();
+    drawNodes(painter);
     
     // Draw edge weights
-    drawEdgeWeights();
+    drawEdgeWeights(painter);
     
     // Draw current mode indicator
     painter.setPen(Qt::black);
@@ -160,9 +160,8 @@ void GraphWidget::resizeEvent(QResizeEvent* event)
     // Handle resize if needed
 }
 
-void GraphWidget::drawGrid()
+void GraphWidget::drawGrid(QPainter& painter)
 {
-    QPainter painter(this);
     painter.setPen(QPen(m_gridColor, 1, Qt::DotLine));
     
     int gridSize = 50;
@@ -174,10 +173,8 @@ void GraphWidget::drawGrid()
     }
 }
 
-void GraphWidget::drawNodes()
+void GraphWidget::drawNodes(QPainter& painter)
 {
-    QPainter painter(this);
-    
     for (const auto& node : m_graph.nodes()) {
         QPointF pos = node->position();
         qreal radius = node->radius();
@@ -206,10 +203,8 @@ void GraphWidget::drawNodes()
     }
 }
 
-void GraphWidget::drawEdges()
+void GraphWidget::drawEdges(QPainter& painter)
 {
-    QPainter painter(this);
-    
     for (const auto& edge : m_graph.edges()) {
         Node* start = edge->startNode();
         Node* end = edge->endNode();
@@ -244,11 +239,10 @@ void GraphWidget::drawEdges()
     }
 }
 
-void GraphWidget::drawSolutionPath()
+void GraphWidget::drawSolutionPath(QPainter& painter)
 {
     if (m_solutionPath.empty()) return;
     
-    QPainter painter(this);
     painter.setPen(QPen(m_solutionColor, 4, Qt::SolidLine));
     painter.setBrush(Qt::NoBrush);
     
@@ -300,9 +294,8 @@ void GraphWidget::drawSolutionPath()
     }
 }
 
-void GraphWidget::drawEdgeWeights()
+void GraphWidget::drawEdgeWeights(QPainter& painter)
 {
-    QPainter painter(this);
     painter.setPen(Qt::black);
     painter.setFont(QFont("Arial", 9));
     
