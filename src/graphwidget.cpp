@@ -3,6 +3,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <cmath>
+#include <QPainterPath>
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #   include <QOpenGLFunctions_4_1_Core>
@@ -351,12 +352,18 @@ Edge* GraphWidget::findEdgeAt(const QPoint& pos)
     const qreal hitThreshold = 10.0;
     
     for (const auto& edge : m_graph.edges()) {
-        QLineF line = edge->line();
+        Node* start = edge->startNode();
+        Node* end = edge->endNode();
+        
+        if (!start || !end) continue;
+        
+        QPointF p1 = start->position();
+        QPointF p2 = end->position();
         QPointF point = screenToWorld(pos);
         
-        // Calculate distance from point to line segment
-        QPointF proj = line.project(point);
-        if (line.contains(proj)) {
+        // Calculate distance from point to line segment manually
+        QPointF proj = projectPointOnSegment(p1, p2, point);
+        if (isPointOnSegment(p1, p2, proj)) {
             qreal dist = QLineF(proj, point).length();
             if (dist < hitThreshold) {
                 return edge.get();
@@ -364,6 +371,32 @@ Edge* GraphWidget::findEdgeAt(const QPoint& pos)
         }
     }
     return nullptr;
+}
+
+QPointF GraphWidget::projectPointOnSegment(const QPointF& p1, const QPointF& p2, const QPointF& point)
+{
+    QPointF vec = p2 - p1;
+    qreal len2 = QPointF::dotProduct(vec, vec);
+    
+    if (len2 == 0) {
+        return p1;
+    }
+    
+    qreal t = QPointF::dotProduct(point - p1, vec) / len2;
+    t = qBound(0.0, t, 1.0);
+    
+    return p1 + t * vec;
+}
+
+bool GraphWidget::isPointOnSegment(const QPointF& p1, const QPointF& p2, const QPointF& point)
+{
+    QPointF vec1 = point - p1;
+    QPointF vec2 = p2 - p1;
+    
+    qreal dot = QPointF::dotProduct(vec1, vec2);
+    qreal len2 = QPointF::dotProduct(vec2, vec2);
+    
+    return (dot >= 0 && dot <= len2);
 }
 
 QPointF GraphWidget::screenToWorld(const QPoint& pos)

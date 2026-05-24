@@ -154,6 +154,24 @@ private:
      */
     QPointF screenToWorld(const QPoint& pos);
     
+    /**
+     * @brief Project a point onto a line segment
+     * @param p1 First endpoint of segment
+     * @param p2 Second endpoint of segment
+     * @param point Point to project
+     * @return QPointF Projection point
+     */
+    QPointF projectPointOnSegment(const QPointF& p1, const QPointF& p2, const QPointF& point);
+    
+    /**
+     * @brief Check if a point lies on a line segment
+     * @param p1 First endpoint of segment
+     * @param p2 Second endpoint of segment
+     * @param point Point to check
+     * @return bool True if point is on segment
+     */
+    bool isPointOnSegment(const QPointF& p1, const QPointF& p2, const QPointF& point);
+    
     Graph m_graph;                          ///< The graph data structure
     Mode m_mode = Mode::AddNode;            ///< Current interaction mode
     Node* m_draggedNode = nullptr;          ///< Node being dragged

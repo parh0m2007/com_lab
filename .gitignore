@@ -2,22 +2,36 @@
 # Compiled and build artifacts
 *.o
 *.obj
-*.exe
-*.dll
-*.so
 *.a
+*.so
+*.dll
+*.exe
 *.out
-
-# Build directories
-build/
-dist/
-cmake-build-*/
 
 # Dependencies
 venv/
 .venv/
 __pycache__/
 *.egg-info/
+node_modules/
+target/
+.gradle/
+
+# Build directories
+build/
+dist/
+out/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*
 
 # Editors
 .vscode/
@@ -25,21 +39,12 @@ __pycache__/
 *.swp
 *.swo
 
-# Logs and temp files
-*.log
-*.tmp
-
-# System files
-.DS_Store
-Thumbs.db
-
 # Coverage
 coverage/
 htmlcov/
 .coverage
 
-# Environment
-.env
-.env.local
-*.env.*
+# OS
+.DS_Store
+Thumbs.db
 ```

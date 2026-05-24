@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QGroupBox>
+#include <QActionGroup>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
