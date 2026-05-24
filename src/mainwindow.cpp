@@ -264,7 +264,7 @@ void MainWindow::showAbout()
            "<p><b>Technologies:</b></p>"
            "<ul>"
            "<li>C++17</li>"
-           "<li>Qt Framework (Widgets & OpenGL)</li>"
+           "<li>Qt Framework (Widgets & QPainter)</li>"
            "<li>CMake Build System</li>"
            "</ul>"
            "<p>This application demonstrates the Branch and Bound algorithm "

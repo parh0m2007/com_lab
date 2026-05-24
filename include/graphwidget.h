@@ -1,7 +1,7 @@
 #ifndef GRAPHWIDGET_H
 #define GRAPHWIDGET_H
 
-#include <QOpenGLWidget>
+#include <QWidget>
 #include <QMouseEvent>
 #include <QPainter>
 #include <vector>
@@ -10,7 +10,7 @@
 
 /**
  * @class GraphWidget
- * @brief OpenGL-based widget for interactive graph visualization and manipulation.
+ * @brief QWidget-based widget for interactive graph visualization and manipulation.
  * 
  * This widget provides a complete interactive interface for:
  * - Adding nodes by clicking
@@ -25,7 +25,7 @@
  * - Hover effects and selection highlighting
  * - Grid background for better spatial understanding
  */
-class GraphWidget : public QOpenGLWidget
+class GraphWidget : public QWidget
 {
     Q_OBJECT
     
@@ -98,9 +98,8 @@ signals:
     void noSolutionFound();
 
 protected:
-    void initializeGL() override;
-    void resizeGL(int w, int h) override;
-    void paintGL() override;
+    void paintEvent(QPaintEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
     
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;

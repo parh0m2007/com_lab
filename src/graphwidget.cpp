@@ -1,24 +1,19 @@
 #include "graphwidget.h"
-#include <QOpenGLFunctions>
 #include <QKeyEvent>
 #include <QMessageBox>
 #include <cmath>
 #include <QPainterPath>
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-#   include <QOpenGLFunctions_4_1_Core>
-#endif
-
 GraphWidget::GraphWidget(QWidget* parent)
-    : QOpenGLWidget(parent)
+    : QWidget(parent)
 {
     setFocusPolicy(Qt::StrongFocus);
     setMinimumSize(400, 400);
+    setAutoFillBackground(false);
 }
 
 GraphWidget::~GraphWidget()
 {
-    makeCurrent();
 }
 
 void GraphWidget::setMode(Mode mode)
@@ -112,18 +107,10 @@ void GraphWidget::loadSampleGraph()
     emit graphChanged();
 }
 
-void GraphWidget::initializeGL()
+void GraphWidget::paintEvent(QPaintEvent* event)
 {
-    // OpenGL initialization handled by Qt
-}
-
-void GraphWidget::resizeGL(int w, int h)
-{
-    // Handle resize if needed
-}
-
-void GraphWidget::paintGL()
-{
+    Q_UNUSED(event);
+    
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     
@@ -165,6 +152,12 @@ void GraphWidget::paintGL()
         QString solText = QString("Solution Cost: %1").arg(m_solutionCost, 0, 'f', 2);
         painter.drawText(10, 40, solText);
     }
+}
+
+void GraphWidget::resizeEvent(QResizeEvent* event)
+{
+    QWidget::resizeEvent(event);
+    // Handle resize if needed
 }
 
 void GraphWidget::drawGrid()
@@ -451,7 +444,7 @@ void GraphWidget::mousePressEvent(QMouseEvent* event)
         }
     }
     
-    QOpenGLWidget::mousePressEvent(event);
+    QWidget::mousePressEvent(event);
 }
 
 void GraphWidget::mouseMoveEvent(QMouseEvent* event)
@@ -461,7 +454,7 @@ void GraphWidget::mouseMoveEvent(QMouseEvent* event)
         update();
     }
     
-    QOpenGLWidget::mouseMoveEvent(event);
+    QWidget::mouseMoveEvent(event);
 }
 
 void GraphWidget::mouseReleaseEvent(QMouseEvent* event)
@@ -473,7 +466,7 @@ void GraphWidget::mouseReleaseEvent(QMouseEvent* event)
         }
     }
     
-    QOpenGLWidget::mouseReleaseEvent(event);
+    QWidget::mouseReleaseEvent(event);
 }
 
 void GraphWidget::keyPressEvent(QKeyEvent* event)
@@ -502,5 +495,5 @@ void GraphWidget::keyPressEvent(QKeyEvent* event)
         }
     }
     
-    QOpenGLWidget::keyPressEvent(event);
+    QWidget::keyPressEvent(event);
 }

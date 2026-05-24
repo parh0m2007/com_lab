@@ -8,21 +8,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Find Qt6 or Qt5
-find_package(Qt6 COMPONENTS Core Gui Widgets OpenGLWidgets QUIET)
+find_package(Qt6 COMPONENTS Core Gui Widgets QUIET)
 if(NOT Qt6_FOUND)
     find_package(Qt5 5.15 REQUIRED COMPONENTS Core Gui Widgets)
     set(QT_VERSION_MAJOR 5)
 else()
     set(QT_VERSION_MAJOR 6)
-endif()
-
-# Find OpenGL
-if(${QT_VERSION_MAJOR} EQUAL 6)
-    find_package(Qt6 COMPONENTS OpenGLWidgets REQUIRED)
-    set(OPENGL_LIBS Qt6::OpenGLWidgets Qt6::OpenGL)
-else()
-    find_package(Qt5 COMPONENTS OpenGL REQUIRED)
-    set(OPENGL_LIBS Qt5::OpenGL)
 endif()
 
 # Source files
@@ -65,15 +56,12 @@ if(${QT_VERSION_MAJOR} EQUAL 6)
         Qt6::Core
         Qt6::Gui
         Qt6::Widgets
-        Qt6::OpenGLWidgets
-        Qt6::OpenGL
     )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
-        Qt5::OpenGL
     )
 endif()
 
