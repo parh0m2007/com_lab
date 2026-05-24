@@ -9,7 +9,7 @@
  * 
  * @section features Features
  * - Interactive graph creation and manipulation
- * - OpenGL-based visualization
+ * - Qt Widgets-based visualization (QPainter)
  * - Real-time TSP solution display
  * - Support for custom graphs with 6+ vertices
  * 
